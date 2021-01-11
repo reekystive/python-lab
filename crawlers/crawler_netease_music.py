@@ -1,11 +1,13 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import re
+import ssl
 
 base_url = "https://music.163.com"
 playlist_id = input("Input a Netease Music playlist ID: ")
 url = base_url + "/playlist?id=" + playlist_id
 
+ssl._create_default_https_context = ssl._create_unverified_context
 html = urlopen(url).read().decode('utf-8')
 
 soup = BeautifulSoup(html, features='lxml')

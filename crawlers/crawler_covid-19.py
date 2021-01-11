@@ -1,6 +1,9 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import re
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
 
 wiki_url = "https://en.wikipedia.org/wiki/Template:COVID-19_pandemic_data"
 html = urlopen(wiki_url).read().decode('utf-8')
