@@ -7,7 +7,7 @@ import ssl
 times = int(input("How many times you want to repeat: "))
 
 base_url = "https://zh.wikipedia.org"
-history = ["/wiki/%E7%B6%B2%E8%B7%AF%E7%88%AC%E8%9F%B2"]
+history = ["/zh-cn/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB"]
 compiled_re = re.compile(r"^/wiki/(%.{2})+$")
 
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -20,4 +20,4 @@ for i in range(times):
     print(i + 1, '\t', soup.find('h1').get_text())
 
     sub_urls = soup.find_all("a", {"href": compiled_re})
-    history.append(choice(sub_urls)['href'])
+    history.append(choice(sub_urls)['href'].replace('/wiki/', '/zh-cn/'))
